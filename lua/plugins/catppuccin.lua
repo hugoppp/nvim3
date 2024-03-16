@@ -1,9 +1,20 @@
 return {
-  "catppuccin/nvim",
+  'catppuccin/nvim',
   lazy = false,
-  name = catppuccin,
   priority = 1000,
-  config = function()
-    vim.cmd.colorscheme("catppuccin")
-  end,
+  opts = {
+    integrations = {
+      cmp = true,
+      gitsigns = true,
+      nvimtree = true,
+      treesitter = true,
+      mason = true,
+      notify = false,
+      min = {
+        enabled = true,
+        indentscope_color = '',
+      },
+    },
+  },
+  config = function() vim.cmd.colorscheme 'catppuccin' end,
 }
