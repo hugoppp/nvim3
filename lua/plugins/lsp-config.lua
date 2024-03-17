@@ -1,5 +1,9 @@
 return { -- LSP Configuration & Plugins
-
+  {
+    'ray-x/lsp_signature.nvim',
+    event = 'VeryLazy',
+    opts = { floating_window = false },
+  },
   -- Useful status updates for LSP.
   { 'j-hui/fidget.nvim', opts = {}, event = 'VeryLazy' },
   {
@@ -9,7 +13,26 @@ return { -- LSP Configuration & Plugins
       'nvim-lua/plenary.nvim',
       'nvim-tree/nvim-tree.lua',
     },
-    opts = {}
+    opts = {},
+  },
+  {
+    'pmizio/typescript-tools.nvim',
+    dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
+    opts = {
+      filetypes = {
+        'javascript',
+        'javascriptreact',
+        'typescript',
+        'typescriptreact',
+        'vue',
+      },
+      settings = {
+        tsserver_plugins = {
+          -- Seemingly this is enough, no name, location or languages needed.
+          '@vue/typescript-plugin',
+        },
+      },
+    },
   },
 
   {
@@ -38,20 +61,21 @@ return { -- LSP Configuration & Plugins
 
           -- NOTE:  see telescope.lua for more bindings
           local builtin = require 'telescope.builtin'
-          map('gd', builtin.lsp_definitions, '[G]oto [D]efinition')
-          map('gr', builtin.lsp_references, '[G]oto [R]eferences')
-          map('gI', builtin.lsp_implementations, '[G]oto [I]mplementation')
-          map('<leader>D', builtin.lsp_type_definitions, 'Type [D]efinition')
-          map('<leader>ds', builtin.lsp_document_symbols, '[D]ocument [S]ymbols')
-          map('<leader>ws', builtin.lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+          map('gd', builtin.lsp_definitions, 'Goto Definition')
+          map('gr', builtin.lsp_references, 'Goto References')
+          map('gI', builtin.lsp_implementations, 'Goto Implementation')
+          map('<leader>D', builtin.lsp_type_definitions, 'Type Definition')
 
           -- Rename the variable under your cursor
           --  Most Language Servers support renaming across files, etc.
           map('<leader>sr', vim.lsp.buf.rename, 'Rename')
 
+          map('==', vim.lsp.buf.format, 'Format')
+
           -- Execute a code action, usually your cursor needs to be on top of an error
           -- or a suggestion from your LSP for this to activate.
-          map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+          -- map('<leader>ca', vim.lsp.buf.code_action, 'Code Action')
+          vim.keymap.set({'v', 'n'}, '<leader>ca', vim.lsp.buf.code_action, { desc = 'Code Action' })
 
           -- Opens a popup that displays documentation about the word under your cursor
           --  See `:help K` for why this keymap
@@ -59,7 +83,7 @@ return { -- LSP Configuration & Plugins
 
           -- WARN: This is not Goto Definition, this is Goto Declaration.
           --  For example, in C this would take you to the header
-          map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+          map('gD', vim.lsp.buf.declaration, 'Goto Declaration')
 
           -- The following two autocommands are used to highlight references of the
           -- word under your cursor when your cursor rests there for a little while.

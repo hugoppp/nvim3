@@ -9,8 +9,8 @@ return {
     },
     opts = {},
     config = function()
-      vim.keymap.set({ 'n', 'x' }, '<leader>ii', ':Refactor inline_var')
-      vim.keymap.set('n', '<leader>II', ':Refactor inline_func')
+      vim.keymap.set({ 'n', 'x' }, '<leader>ii', ':Refactor inline_var', {desc = 'variable' })
+      vim.keymap.set('n', '<leader>iI', ':Refactor inline_func', {desc = 'method' })
 
       vim.keymap.set('x', '<leader>im', ':Refactor extract ')
       vim.keymap.set('x', '<leader>iv', ':Refactor extract_var ')

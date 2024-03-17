@@ -11,26 +11,26 @@ return {
     dependencies = { 'nvim-lua/plenary.nvim' },
 
     config = function()
-      local map = function(keys, func, desc) vim.keymap.set('n', keys, func, { desc = 'LSP: ' .. desc }) end
+      local map = function(keys, func, desc) vim.keymap.set('n', keys, func, { desc = desc }) end
 
       local builtin = require 'telescope.builtin'
 
-      map('<leader>fa', telescope_find_files_hidden, '[F]iles [a]ll')
-      map('<leader>fr', builtin.oldfiles, '[F]iles [r]ecent')
+      map('<leader>fa', telescope_find_files_hidden, 'Files all')
+      map('<leader>fr', builtin.oldfiles, 'Files recent')
 
-      map('<leader>sa', builtin.live_grep, '[S]earch [a]ll')
-      map('<leader>st', builtin.current_buffer_fuzzy_find, '[S]earch [t]his')
-      map('<leader>sw', builtin.grep_string, '[S]earch [w]ord')
-      map('<leader>se', builtin.diagnostics, '[S]earch [e]rrors')
-      map('<leader>sh', builtin.help_tags, '[S]earch [h]elp')
-      map('<leader>gb', builtin.git_branches, '[G]it [b]branches')
+      map('<leader>sa', builtin.live_grep, 'Search all')
+      map('<leader>st', builtin.current_buffer_fuzzy_find, 'Search this')
+      map('<leader>sw', builtin.grep_string, 'Search word')
+      map('<leader>se', builtin.diagnostics, 'Search errors')
+      map('<leader>sh', builtin.help_tags, 'Search help')
+      map('<leader>gb', builtin.git_branches, 'Git bbranches')
 
-      map('<leader>sm', telescope_doucment_methods, 'LSP: [S]earch [m]methods')
-      map('<leader>sM', telescope_methods, 'LSP: [S]earch all [m]methods')
-      map('<leader>sc', telescope_document_classes, 'LSP: [S]earch [c]lasses')
-      map('<leader>sC', telescope_classes, 'LSP: [S]earch [c]lasses')
+      map('<leader>sm', telescope_doucment_methods, 'LSP: Search methods')
+      map('<leader>sM', telescope_methods, 'LSP: Search all mmethods')
+      map('<leader>sc', telescope_document_classes, 'LSP: Search classes')
+      map('<leader>sC', telescope_classes, 'LSP: Search classes')
 
-      map('<leader>p', builtin.registers, '[P]aste from register')
+      map('<leader>p', builtin.registers, 'Paste from register')
     end,
   },
   {

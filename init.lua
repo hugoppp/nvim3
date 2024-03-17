@@ -16,7 +16,7 @@ require('lazy').setup {
   { import = 'plugins' },
   { 'numToStr/Comment.nvim', opts = {}, event = 'VeryLazy' },
   { 'wakatime/vim-wakatime', lazy = false },
-  'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+  { 'tpope/vim-sleuth' }, -- Detect tabstop and shiftwidth automatically
   {
     'folke/todo-comments.nvim',
     event = 'VeryLazy',
