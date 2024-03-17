@@ -3,6 +3,16 @@ return { -- LSP Configuration & Plugins
   -- Useful status updates for LSP.
   { 'j-hui/fidget.nvim', opts = {}, event = 'VeryLazy' },
   {
+    'antosha417/nvim-lsp-file-operations',
+    event = 'VeryLazy',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-tree/nvim-tree.lua',
+    },
+    opts = {}
+  },
+
+  {
     'neovim/nvim-lspconfig',
     dependencies = {
       -- Automatically install LSPs and related tools to stdpath for neovim
