@@ -28,11 +28,6 @@ require('lazy').setup {
     opts = {},
   },
   {
-    'folke/persistence.nvim',
-    event = 'BufReadPre',
-    opts = {},
-  },
-  {
     'chrisgrieser/nvim-various-textobjs',
     event = 'VeryLazy',
     opts = { useDefaultKeymaps = true },
@@ -54,6 +49,14 @@ require('lazy').setup {
       end,
     },
   },
+  {
+    'rmagatti/auto-session',
+    opts = { log_level = 'error', auto_session_allowed_dirs = { '~/git', '~/.config/nvim' } },
+    config = function(_, opts)
+      require('auto-session').setup(opts)
+      vim.keymap.set('n', '<leader>ss', require('auto-session.session-lens').search_session)
+    end,
+  },
 }
 
 -- Highlight when yanking (copying) text
@@ -63,23 +66,4 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
   callback = function() vim.highlight.on_yank() end,
-})
-
-vim.api.nvim_create_autocmd('VimEnter', {
-  group = vim.api.nvim_create_augroup('restore_session', { clear = true }),
-  callback = function()
-    if vim.fn.getcwd() ~= vim.env.HOME and #vim.fn.argv() == 0 then
-      vim.api.nvim_create_autocmd('VimEnter', {
-        group = vim.api.nvim_create_augroup('restore_session', { clear = true }),
-        callback = function()
-          if vim.fn.getcwd() ~= vim.env.HOME then
-            require('persistence').load()
-          end
-        end,
-        nested = true,
-      })
-      require('persistence').load()
-    end
-  end,
-  nested = true,
 })
