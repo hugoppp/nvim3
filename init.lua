@@ -51,7 +51,7 @@ require('lazy').setup {
   },
   {
     'rmagatti/auto-session',
-    opts = { log_level = 'error', auto_session_allowed_dirs = { '~/git', '~/.config/nvim' } },
+    opts = { log_level = 'error', auto_session_allowed_dirs = { '~/git/*', '~/.config/nvim' } },
     config = function(_, opts)
       require('auto-session').setup(opts)
       vim.keymap.set('n', '<leader>ss', require('auto-session.session-lens').search_session)
