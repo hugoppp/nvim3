@@ -1,7 +1,24 @@
 return {
+  -- {
+  --   'tpope/vim-fugitive',
+  --   event = 'VeryLazy',
+  --   config = function()
+  --     vim.keymap.set('n', '<leader>tb', ':G blame<CR>')
+  --   end,
+  -- },
+  {
+    'hugoppp/blame.nvim',
+    -- 'FabijanZulj/blame.nvim',
+    -- dir = '~/git/blame.nvim',
+    event = 'VeryLazy',
+    config = function()
+      require('blame').setup {}
+      vim.keymap.set('n', '<leader>tb', ':ToggleBlame virtual<CR>')
+    end,
+  },
   {
     'NeogitOrg/neogit',
-    keys = { '<leader>gg'},
+    keys = { '<leader>gg' },
     dependencies = {
       'nvim-lua/plenary.nvim',
       { 'sindrets/diffview.nvim', opts = { enhanced_diff_hl = true } }, -- optional
@@ -77,7 +94,6 @@ return {
         map('n', '<leader>hR', gs.reset_buffer)
         map('n', '<leader>hp', gs.preview_hunk)
         map('n', '<leader>hb', function() gs.blame_line { full = true } end)
-        map('n', '<leader>tb', gs.toggle_current_line_blame)
         map('n', '<leader>hd', gs.diffthis)
         map('n', '<leader>hD', function() gs.diffthis '~' end)
         map('n', '<leader>td', gs.toggle_deleted)
