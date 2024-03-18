@@ -19,7 +19,7 @@ return {
   },
   config = function(_, opts)
     require('neo-tree').setup(opts)
-    vim.keymap.set('n', '<leader>ff', ':Neotree filesystem reveal left<CR>', { silent = true, desc = '[F]iletree' })
+    vim.keymap.set('n', '<leader>ff', ':Neotree filesystem reveal left<CR>', { silent = true, desc = 'tree' })
 
     vim.fn.sign_define('DiagnosticSignError', { text = ' ', texthl = 'DiagnosticSignError' })
     vim.fn.sign_define('DiagnosticSignWarn', { text = ' ', texthl = 'DiagnosticSignWarn' })

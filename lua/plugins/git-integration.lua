@@ -18,17 +18,25 @@ return {
   },
   {
     'NeogitOrg/neogit',
-    keys = { '<leader>gg' },
+    event = 'VeryLazy',
     dependencies = {
       'nvim-lua/plenary.nvim',
       { 'sindrets/diffview.nvim', opts = { enhanced_diff_hl = true } }, -- optional
       'nvim-telescope/telescope.nvim',
     },
-    config = function()
-      require('neogit').setup {}
-      vim.keymap.set('n', '<leader>gg', function()
-        vim.api.nvim_command("silent wa")
-        require('neogit').open { kind = 'auto' } end, { desc = 'neogit' })
+    config = function(_, opts)
+      local neogit = require 'neogit'
+      neogit.setup { opts }
+      local map = function(keys, func)
+        vim.keymap.set('n', keys, function() neogit.open { func, kind = 'auto' } end, { desc = func or 'git' })
+      end
+      map('<leader>gg', nil)
+      map('<leader>gB', 'branch')
+      map('<leader>gl', 'log')
+      map('<leader>gd', 'diff')
+      map('<leader>gm', 'merge')
+      map('<leader>gp', 'pull')
+      map('<leader>gP', 'push')
     end,
   },
   -- {

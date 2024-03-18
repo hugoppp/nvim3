@@ -15,16 +15,16 @@ return {
 
       local builtin = require 'telescope.builtin'
 
-      map('<leader>fa', telescope_find_files_hidden, 'Files all')
-      map('<leader>fr', builtin.oldfiles, 'Files recent')
+      map('<leader>fa', telescope_find_files_hidden, 'all')
+      map('<leader>fr', builtin.oldfiles, 'recent')
 
-      map('<leader>sa', builtin.live_grep, 'Search all')
-      map('<leader>st', builtin.current_buffer_fuzzy_find, 'Search this')
-      map('<leader>sw', builtin.grep_string, 'Search word')
-      map('<leader>se', builtin.diagnostics, 'Search errors')
-      map('<leader>sh', builtin.help_tags, 'Search help')
-      map('<leader>gb', builtin.git_branches, 'Git branches')
-      map('<leader>gs', builtin.git_status, 'Git status')
+      map('<leader>sa', builtin.live_grep, 'all')
+      map('<leader>st', builtin.current_buffer_fuzzy_find, 'this')
+      map('<leader>sw', builtin.grep_string, 'word')
+      map('<leader>se', builtin.diagnostics, 'errors')
+      map('<leader>sh', builtin.help_tags, 'help')
+      map('<leader>gb', builtin.git_branches, 'branches')
+      map('<leader>gs', builtin.git_status, 'status')
 
       map('<leader>sm', telescope_doucment_methods, 'LSP: Search methods')
       map('<leader>sM', telescope_methods, 'LSP: Search all mmethods')
