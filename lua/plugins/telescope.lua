@@ -23,7 +23,8 @@ return {
       map('<leader>sw', builtin.grep_string, 'Search word')
       map('<leader>se', builtin.diagnostics, 'Search errors')
       map('<leader>sh', builtin.help_tags, 'Search help')
-      map('<leader>gb', builtin.git_branches, 'Git bbranches')
+      map('<leader>gb', builtin.git_branches, 'Git branches')
+      map('<leader>gs', builtin.git_status, 'Git status')
 
       map('<leader>sm', telescope_doucment_methods, 'LSP: Search methods')
       map('<leader>sM', telescope_methods, 'LSP: Search all mmethods')

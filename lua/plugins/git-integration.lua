@@ -26,7 +26,9 @@ return {
     },
     config = function()
       require('neogit').setup {}
-      vim.keymap.set('n', '<leader>gg', function() require('neogit').open { kind = 'auto' } end, { desc = 'neogit' })
+      vim.keymap.set('n', '<leader>gg', function()
+        vim.api.nvim_command("silent wa")
+        require('neogit').open { kind = 'auto' } end, { desc = 'neogit' })
     end,
   },
   -- {

@@ -1,6 +1,7 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 vim.opt.autowriteall = true
+vim.opt.autowrite = true
 vim.opt.expandtab = true
 
 -- vim.opt.spelllang = 'en_us'
