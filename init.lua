@@ -55,3 +55,15 @@ vim.api.nvim_create_autocmd({ 'BufLeave', 'FocusLost', 'InsertLeave', 'BufWinLea
     end
   end,
 })
+
+vim.api.nvim_create_autocmd({ 'FocusGained', 'BufEnter', 'CursorHold', 'CursorHoldI' }, {
+  callback = function()
+    if vim.api.nvim_get_mode() ~= 'c' then
+      vim.cmd.checktime()
+    end
+  end,
+})
+
+vim.api.nvim_create_autocmd('FileChangedShellPost', {
+  callback = function() print 'buffer updated' end,
+})
