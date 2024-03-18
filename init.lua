@@ -18,16 +18,6 @@ require('lazy').setup {
   { 'wakatime/vim-wakatime', lazy = false },
   { 'tpope/vim-sleuth' }, -- Detect tabstop and shiftwidth automatically
   {
-    'folke/todo-comments.nvim',
-    event = 'VeryLazy',
-    dependencies = { 'nvim-lua/plenary.nvim' },
-    opts = { signs = false },
-  },
-  {
-    'stevearc/dressing.nvim',
-    opts = {},
-  },
-  {
     'chrisgrieser/nvim-various-textobjs',
     event = 'VeryLazy',
     opts = { useDefaultKeymaps = true },
@@ -37,17 +27,6 @@ require('lazy').setup {
     version = '*', -- Use for stability; omit to use `main` branch for the latest features
     event = 'VeryLazy',
     opts = {},
-  },
-  {
-    'akinsho/toggleterm.nvim',
-    version = '*',
-    opts = { open_mapping = [[<c-\>]] },
-    winbar = {
-      enabled = false,
-      name_formatter = function(term) --  term: Terminal
-        return term.name
-      end,
-    },
   },
   {
     'rmagatti/auto-session',
@@ -72,6 +51,7 @@ vim.api.nvim_create_autocmd({ 'BufLeave', 'FocusLost', 'InsertLeave', 'BufWinLea
   callback = function()
     if vim.bo.modified and not vim.bo.readonly and vim.fn.expand '%' ~= '' and vim.bo.buftype == '' then
       vim.api.nvim_command 'silent update'
+      require('neogit').refresh_manually(vim.fn.expand '%')
     end
   end,
 })
