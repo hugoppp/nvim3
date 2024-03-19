@@ -14,14 +14,14 @@ vim.opt.rtp:prepend(lazypath)
 require 'vim-options'
 require('lazy').setup {
   { import = 'plugins' },
+  {
+    'chrisgrieser/nvim-various-textobjs',
+    lazy = false, -- so that comment will be loaded after this (conflict gcc)
+    opts = { useDefaultKeymaps = true },
+  },
   { 'numToStr/Comment.nvim', opts = {}, event = 'VeryLazy' },
   { 'wakatime/vim-wakatime', lazy = false },
   { 'tpope/vim-sleuth' }, -- Detect tabstop and shiftwidth automatically
-  {
-    'chrisgrieser/nvim-various-textobjs',
-    event = 'VeryLazy',
-    opts = { useDefaultKeymaps = true },
-  },
   {
     'kylechui/nvim-surround',
     version = '*', -- Use for stability; omit to use `main` branch for the latest features
